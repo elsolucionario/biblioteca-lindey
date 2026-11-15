@@ -36,7 +36,8 @@
     "Programación Aplicada": "Applied Programming",
     "Modelos Estocásticos": "Stochastic Models",
     "Mecánica de Suelos II": "Soil Mechanics II",
-    "Gestión Profesional": "Professional Management"
+    "Gestión Profesional": "Professional Management",
+    "Dibujo para Ingeniería": "Engineering Drawing"
   },
   "orden_cursos": [
     "Estática",
@@ -54,7 +55,8 @@
     "Programación Aplicada",
     "Modelos Estocásticos",
     "Mecánica de Suelos II",
-    "Gestión Profesional"
+    "Gestión Profesional",
+    "Dibujo para Ingeniería"
   ],
   "marca_agua": {
     "texto": "LINDEY",
