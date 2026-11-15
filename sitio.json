@@ -37,7 +37,8 @@
     "Modelos Estocásticos": "Stochastic Models",
     "Mecánica de Suelos II": "Soil Mechanics II",
     "Gestión Profesional": "Professional Management",
-    "Dibujo para Ingeniería": "Engineering Drawing"
+    "Dibujo para Ingeniería": "Engineering Drawing",
+    "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering"
   },
   "orden_cursos": [
     "Estática",
@@ -56,7 +57,8 @@
     "Modelos Estocásticos",
     "Mecánica de Suelos II",
     "Gestión Profesional",
-    "Dibujo para Ingeniería"
+    "Dibujo para Ingeniería",
+    "Ingeniería Sismorresistente"
   ],
   "marca_agua": {
     "texto": "LINDEY",
