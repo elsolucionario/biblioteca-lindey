@@ -19,6 +19,8 @@ concurrency:
 jobs:
   construir:
     runs-on: ubuntu-latest
+    outputs:
+      urls: ${{ steps.indexnow.outputs.urls }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,8 +34,13 @@ jobs:
         if: hashFiles('pdfs/*.docx', 'pdfs/*.doc', 'pdfs/*.odt', 'pdfs/*.rtf') != ''
         # libreoffice-math es necesario: sin él, las ecuaciones de Word desaparecen al convertir a PDF
         run: sudo apt-get install -y -qq --no-install-recommends libreoffice-writer libreoffice-math
+      - name: Guardar el sitemap publicado antes de este cambio (para IndexNow)
+        run: curl -sf https://solucionariouni.com/sitemap.xml -o /tmp/sitemap_anterior.xml || echo '<urlset/>' > /tmp/sitemap_anterior.xml
       - name: Generar el sitio
         run: python build.py
+      - name: Lista de páginas nuevas o modificadas
+        id: indexnow
+        run: echo "urls=$(python herramientas/indexnow.py lista /tmp/sitemap_anterior.xml _site/sitemap.xml)" >> "$GITHUB_OUTPUT"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -48,3 +55,14 @@ jobs:
     steps:
       - id: despliegue
         uses: actions/deploy-pages@v5
+
+  avisar-buscadores:
+    # IndexNow: avisa a Bing (y a los buscadores que lo usan) de lo publicado. No afecta a Google.
+    needs: [construir, publicar]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enviar a IndexNow
+        env:
+          URLS: ${{ needs.construir.outputs.urls }}
+        run: python herramientas/indexnow.py enviar "$URLS"

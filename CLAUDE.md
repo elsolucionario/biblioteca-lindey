@@ -43,3 +43,10 @@ git add -A && git commit -m "..." && git push origin HEAD:main
 
 `_site/` no se sube (está en `.gitignore`). Tras el push, esperar al workflow y revisar la página nueva en
 https://solucionariouni.com (los ejercicios en `/<curso>/<archivo>/`, los PDF en `/pdfs/<archivo>/`).
+
+## IndexNow (Bing y otros buscadores)
+
+Cada publicación compara el sitemap anterior con el nuevo y envía solo las páginas nuevas o modificadas a
+IndexNow (`herramientas/indexnow.py`, job `avisar-buscadores` del workflow). La clave es `estaticos/<clave>.txt`;
+no borrarla ni cambiarla. No afecta a Google: para Google se sigue usando el sitemap y Search Console
+(solicitudes manuales, unas 10 al día).
