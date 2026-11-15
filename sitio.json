@@ -38,7 +38,8 @@
     "Mecánica de Suelos II": "Soil Mechanics II",
     "Gestión Profesional": "Professional Management",
     "Dibujo para Ingeniería": "Engineering Drawing",
-    "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering"
+    "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering",
+    "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems"
   },
   "orden_cursos": [
     "Estática",
@@ -58,7 +59,8 @@
     "Mecánica de Suelos II",
     "Gestión Profesional",
     "Dibujo para Ingeniería",
-    "Ingeniería Sismorresistente"
+    "Ingeniería Sismorresistente",
+    "Sistemas de Abastecimiento de Agua y Alcantarillado"
   ],
   "marca_agua": {
     "texto": "LINDEY",
