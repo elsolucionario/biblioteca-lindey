@@ -40,7 +40,8 @@
     "Dibujo para Ingeniería": "Engineering Drawing",
     "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering",
     "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems",
-    "Modelos Predictivos": "Predictive Models"
+    "Modelos Predictivos": "Predictive Models",
+    "Geotecnia": "Geotechnics"
   },
   "orden_cursos": [
     "Estática",
@@ -62,7 +63,8 @@
     "Dibujo para Ingeniería",
     "Ingeniería Sismorresistente",
     "Sistemas de Abastecimiento de Agua y Alcantarillado",
-    "Modelos Predictivos"
+    "Modelos Predictivos",
+    "Geotecnia"
   ],
   "marca_agua": {
     "texto": "LINDEY",
