@@ -39,7 +39,8 @@
     "Gestión Profesional": "Professional Management",
     "Dibujo para Ingeniería": "Engineering Drawing",
     "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering",
-    "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems"
+    "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems",
+    "Modelos Predictivos": "Predictive Models"
   },
   "orden_cursos": [
     "Estática",
@@ -60,7 +61,8 @@
     "Gestión Profesional",
     "Dibujo para Ingeniería",
     "Ingeniería Sismorresistente",
-    "Sistemas de Abastecimiento de Agua y Alcantarillado"
+    "Sistemas de Abastecimiento de Agua y Alcantarillado",
+    "Modelos Predictivos"
   ],
   "marca_agua": {
     "texto": "LINDEY",
