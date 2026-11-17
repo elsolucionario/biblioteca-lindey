@@ -16,7 +16,8 @@
     "UPN": "Universidad Privada del Norte",
     "UCSP": "Universidad Católica San Pablo",
     "UNAB": "Universidad Andrés Bello",
-    "PUCP": "Pontificia Universidad Católica del Perú"
+    "PUCP": "Pontificia Universidad Católica del Perú",
+    "UPC": "Universidad Peruana de Ciencias Aplicadas"
   },
   "nombre_en": "Lindey Library",
   "descripcion_en": "Free library of university engineering exercises with full problem statement and figure: Statics, Dynamics, Strength of Materials, Mechanics of Materials and more.",
