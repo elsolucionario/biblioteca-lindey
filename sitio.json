@@ -42,7 +42,8 @@
     "Ingeniería Sismorresistente": "Earthquake-Resistant Engineering",
     "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems",
     "Modelos Predictivos": "Predictive Models",
-    "Geotecnia": "Geotechnics"
+    "Geotecnia": "Geotechnics",
+    "Sistemas de Información Minero": "Mining Information Systems"
   },
   "orden_cursos": [
     "Estática",
@@ -65,7 +66,8 @@
     "Ingeniería Sismorresistente",
     "Sistemas de Abastecimiento de Agua y Alcantarillado",
     "Modelos Predictivos",
-    "Geotecnia"
+    "Geotecnia",
+    "Sistemas de Información Minero"
   ],
   "marca_agua": {
     "texto": "LINDEY",
