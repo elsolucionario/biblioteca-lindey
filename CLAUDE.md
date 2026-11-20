@@ -50,3 +50,10 @@ Cada publicación compara el sitemap anterior con el nuevo y envía solo las pá
 IndexNow (`herramientas/indexnow.py`, job `avisar-buscadores` del workflow). La clave es `estaticos/<clave>.txt`;
 no borrarla ni cambiarla. No afecta a Google: para Google se sigue usando el sitemap y Search Console
 (solicitudes manuales, unas 10 al día).
+
+## Videos TikTok con voz
+
+El contenedor no tiene voz en español (sin red). La voz se pone en la PC de la usuaria (Windows, con internet):
+se deja en `C:\Users\Lenovo\Videos\lindey_voz\` el video mudo + `voz_<tema>.py` (edge-tts, voz es-PE-CamilaNeural,
+lista FRASES con segundo de inicio/fin por escena) + `VOZ_<TEMA>.bat`. Ella hace doble clic en el .bat y sale
+`<video>_voz.mp4`. Plantilla: `lindey_voz/voz_dinamica_collarin.py`.
