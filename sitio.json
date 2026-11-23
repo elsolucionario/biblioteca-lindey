@@ -44,7 +44,8 @@
     "Sistemas de Abastecimiento de Agua y Alcantarillado": "Water Supply and Sewerage Systems",
     "Modelos Predictivos": "Predictive Models",
     "Geotecnia": "Geotechnics",
-    "Sistemas de Información Minero": "Mining Information Systems"
+    "Sistemas de Información Minero": "Mining Information Systems",
+    "Mecánica Estructural": "Structural Mechanics"
   },
   "orden_cursos": [
     "Estática",
@@ -68,7 +69,8 @@
     "Sistemas de Abastecimiento de Agua y Alcantarillado",
     "Modelos Predictivos",
     "Geotecnia",
-    "Sistemas de Información Minero"
+    "Sistemas de Información Minero",
+    "Mecánica Estructural"
   ],
   "marca_agua": {
     "texto": "LINDEY",
