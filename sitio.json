@@ -45,7 +45,8 @@
     "Modelos Predictivos": "Predictive Models",
     "Geotecnia": "Geotechnics",
     "Sistemas de Información Minero": "Mining Information Systems",
-    "Mecánica Estructural": "Structural Mechanics"
+    "Mecánica Estructural": "Structural Mechanics",
+    "Mecánica de Sólidos II": "Mechanics of Solids II"
   },
   "orden_cursos": [
     "Estática",
@@ -70,7 +71,8 @@
     "Modelos Predictivos",
     "Geotecnia",
     "Sistemas de Información Minero",
-    "Mecánica Estructural"
+    "Mecánica Estructural",
+    "Mecánica de Sólidos II"
   ],
   "marca_agua": {
     "texto": "LINDEY",
