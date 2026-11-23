@@ -57,3 +57,9 @@ El contenedor no tiene voz en español (sin red). La voz se pone en la PC de la 
 se deja en `C:\Users\Lenovo\Videos\lindey_voz\` el video mudo + `voz_<tema>.py` (edge-tts, voz es-PE-CamilaNeural,
 lista FRASES con segundo de inicio/fin por escena) + `VOZ_<TEMA>.bat`. Ella hace doble clic en el .bat y sale
 `<video>_voz.mp4`. Plantilla: `lindey_voz/voz_dinamica_collarin.py`.
+
+## PDFs en inglés
+
+Cada PDF nuevo lleva también su versión en inglés (página /en/pdfs/...): en el .md poner `titulo_en`, `slug_en`
+(corto, en inglés), `descripcion_en`, `palabras_en` y, debajo de la transcripción en español, una línea `[en]`
+seguida de la traducción (## Problem 1, ...). El PDF descargable sigue siendo el original.

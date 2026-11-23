@@ -59,6 +59,10 @@ CAMPOS_DOCUMENTO = ("titulo", "curso", "archivo")
 EXTENSIONES_WORD = (".docx", ".doc", ".odt", ".rtf")
 
 # Traducción automática de etiquetas cortas para la versión en inglés
+TIPOS_EN = [("Práctica calificada", "Graded practice"), ("Lista de ejercicios", "Exercise list"),
+            ("Evaluación sumativa", "Summative assessment"), ("Evaluación colaborativa", "Collaborative assessment"),
+            ("Evaluación", "Assessment"), ("Examen", "Exam"), ("Tarea", "Assignment"), ("Trabajo grupal", "Group assignment"),
+            ("Guía", "Guide"), ("Documento", "Document")]
 ETIQUETAS_EN = [("Pregunta", "Question"), ("Problema", "Problem"), ("Ejercicio", "Exercise")]
 EVALUACIONES_EN = [("Práctica calificada", "Graded practice"), ("Trabajo grupal", "Group assignment"),
                    ("Examen práctico", "Practical exam"), ("Examen parcial", "Midterm exam"),
@@ -304,7 +308,22 @@ def leer_documento(ruta, sitio):
         raise ValueError(f"{origen.name}: solo se aceptan PDF o Word")
     slug = slugify(ruta.stem)
     sigla = datos.get("universidad", "")
+    partes = re.split(r"^\[en\]\s*$", cuerpo, maxsplit=1, flags=re.M)
+    cuerpo = partes[0].strip()
+    cuerpo_en = partes[1].strip() if len(partes) > 1 else ""
+    titulo_en = datos.get("titulo_en", "")
+    tiene_en = bool(titulo_en and cuerpo_en)
+    slug_en = slugify(datos.get("slug_en") or titulo_en) if tiene_en else ""
+    curso_en = sitio["cursos_en"].get(datos["curso"], datos["curso"])
     return {
+        "tiene_en": tiene_en,
+        "titulo_en": titulo_en,
+        "cuerpo_en": cuerpo_en,
+        "descripcion_en": datos.get("descripcion_en", ""),
+        "palabras_en": [p.strip() for p in datos.get("palabras_en", "").split(",") if p.strip()],
+        "curso_en": curso_en,
+        "tipo_en": traducir(datos.get("tipo", "Documento"), TIPOS_EN),
+        "url_en": f"en/pdfs/{slug_en}/" if tiene_en else "",
         "archivo": ruta.name,
         "slug": slug,
         "titulo": datos["titulo"],
@@ -654,6 +673,7 @@ def preparar_documento(sitio, d):
     else:
         d["contenido_html"] = ""
         d["texto_plano"] = ""
+    d["contenido_html_en"] = markdown_simple(d["cuerpo_en"]) if d.get("cuerpo_en") else ""
     if not d["descripcion"]:
         limpio = re.sub(r"^#+\s.*$", "", d["texto_plano"], flags=re.M)
         d["descripcion"] = recortar(limpio or f"{d['tipo']} de {d['curso']} en PDF.", 158)
@@ -1505,7 +1525,60 @@ def pagina_documento(sitio, d, cursos_con_pagina=()):
            "text": recortar(d.get("texto_plano", ""), 5000), **({"image": imagen_social} if imagen_social else {})}]
     return pagina(sitio, raiz=raiz, ruta=d["url"], titulo=f"{d['titulo']} (PDF) – {d['curso']} | {sitio['nombre']}",
                   descripcion=d["descripcion"], contenido=contenido, jsonld=ld, mensaje_wa=mensaje,
-                  imagen_social=imagen_social, tipo_og="article")
+                  imagen_social=imagen_social, tipo_og="article",
+                  alternos={"es": d["url"], "en": d["url_en"]} if d.get("tiene_en") else None)
+
+
+def pagina_documento_en(sitio, d):
+    """Versión en inglés de la página de un PDF (el PDF sigue siendo el original en español)."""
+    raiz = "../../../"
+    uni = f" ({d['universidad']})" if d["universidad"] else ""
+    titulo = f"{d['titulo_en']} (PDF) – {d['curso_en']}{uni} | {sitio['nombre_en']}"
+    descripcion = recortar(d["descripcion_en"] or f"{d['tipo_en']} of {d['curso_en']}: {d['cuerpo_en']}")
+    mensaje = f"Hi Lindey, I saw the PDF «{d['titulo_en']}» ({d['curso_en']}) on the Lindey Library and I'd like to get the solution."
+    url_abs = f"{sitio['url']}/{d['url_en']}"
+    chips = [f'<span class="chip chip--curso">{esc(d["curso_en"])}</span>']
+    if d["universidad"]:
+        etiqueta_uni = f"{d['universidad']} · {d['universidad_nombre']}" if d["universidad_nombre"] else d["universidad"]
+        chips.append(f'<span class="chip">{esc(etiqueta_uni)}</span>')
+    for extra in (d["tipo_en"], f"{d['n_paginas']} pages" if d.get("n_paginas") else ""):
+        if extra:
+            chips.append(f'<span class="chip chip--suave">{esc(extra)}</span>')
+    palabras = ""
+    if d["palabras_en"]:
+        palabras = '<p class="palabras"><span>Concepts:</span> ' + ", ".join(esc(p) for p in d["palabras_en"]) + "</p>"
+    contenido = f"""<div class="envoltura">
+{migas(raiz, [("PDFs", f"{raiz}pdfs/"), (d['titulo_en'], None)], "en")}
+<article class="documento">
+  <header class="ejercicio__cabecera">
+    <p class="antetitulo">{esc(d['tipo_en'])} · {esc(d['curso_en'])}</p>
+    <h1>{esc(d['titulo_en'])}</h1>
+    <div class="chips">{"".join(chips)}</div>
+  </header>
+  {visor_libro(d, raiz)}
+  <div class="documento__acciones">
+    <a class="boton boton--pdf" href="{raiz}{d['pdf_url']}" download>{ICONO_PDF}Download PDF – original in Spanish ({tamano_legible(d['bytes'])})</a>
+    <a class="boton boton--suave" href="{raiz}{d['url']}" hreflang="es" lang="es">Ver en español</a>
+    {compartir(url_abs, f"Check out this {d['curso_en']} PDF: {d['titulo_en']}", "en")}
+  </div>
+  <section class="enunciado transcripcion" aria-labelledby="t-contenido">
+    <h2 id="t-contenido">Document contents (English translation)</h2>
+    {d['contenido_html_en']}
+    {palabras}
+  </section>
+  {asesoria(sitio, mensaje, "en")}
+</article>
+</div>"""
+    imagen_social = f"{sitio['url']}/{d['portada']['i']}" if d.get("portada") else None
+    ld = [migas_jsonld(sitio, [("PDFs", "pdfs/"), (d["titulo_en"], d["url_en"])], "en"),
+          {"@context": "https://schema.org", "@type": "DigitalDocument", "name": d["titulo_en"], "description": descripcion,
+           "inLanguage": "en", "encodingFormat": "application/pdf", "url": f"{sitio['url']}/{d['pdf_url']}",
+           "about": d["curso_en"], "keywords": ", ".join([d["curso_en"]] + d["palabras_en"]), "datePublished": d["fecha"],
+           "isAccessibleForFree": True, "text": recortar(d["cuerpo_en"], 5000),
+           "translationOfWork": {"@id": f"{sitio['url']}/{d['url']}"}, **({"image": imagen_social} if imagen_social else {})}]
+    return pagina(sitio, raiz=raiz, ruta=d["url_en"], titulo=titulo, descripcion=descripcion, contenido=contenido,
+                  jsonld=ld, mensaje_wa=mensaje, imagen_social=imagen_social, tipo_og="article", idioma="en",
+                  alternos={"es": d["url"], "en": d["url_en"]})
 
 
 def pagina_portada(sitio, ejercicios, documentos, cursos, universidades):
@@ -1644,7 +1717,10 @@ def sitemap(sitio, ejercicios, documentos, cursos, universidades):
             filas.append((alt["en"], e["fecha"], imagenes, alt))
     for d in documentos:
         imagenes = [f"{u}/{p['i']}" for p in d.get("paginas", [])[:50]]
-        filas.append((f"{u}/{d['url']}", d["fecha"], imagenes, None))
+        alt = {"es": f"{u}/{d['url']}", "en": f"{u}/{d['url_en']}"} if d.get("tiene_en") else None
+        filas.append((f"{u}/{d['url']}", d["fecha"], imagenes, alt))
+        if alt:
+            filas.append((alt["en"], d["fecha"], None, alt))
         filas.append((f"{u}/{d['pdf_url']}", d["fecha"], None, None))
     partes = ['<?xml version="1.0" encoding="UTF-8"?>',
               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -1705,6 +1781,8 @@ def main():
                                     [d for d in documentos if d["universidad"] == sigla]))
     for d in documentos:
         escribir(f"{d['url']}index.html", pagina_documento(sitio, d, cursos))
+        if d.get("tiene_en"):
+            escribir(f"{d['url_en']}index.html", pagina_documento_en(sitio, d))
     con_en = [e for e in ejercicios if e["tiene_en"]]
     for e in con_en:
         relacionados = [o for o in con_en if o["curso"] == e["curso"] and o is not e]
