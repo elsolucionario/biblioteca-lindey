@@ -46,7 +46,8 @@
     "Geotecnia": "Geotechnics",
     "Sistemas de Información Minero": "Mining Information Systems",
     "Mecánica Estructural": "Structural Mechanics",
-    "Mecánica de Sólidos II": "Mechanics of Solids II"
+    "Mecánica de Sólidos II": "Mechanics of Solids II",
+    "Cálculo I": "Calculus I"
   },
   "orden_cursos": [
     "Estática",
@@ -72,7 +73,8 @@
     "Geotecnia",
     "Sistemas de Información Minero",
     "Mecánica Estructural",
-    "Mecánica de Sólidos II"
+    "Mecánica de Sólidos II",
+    "Cálculo I"
   ],
   "marca_agua": {
     "texto": "LINDEY",
