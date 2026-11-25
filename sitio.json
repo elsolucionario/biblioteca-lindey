@@ -47,7 +47,8 @@
     "Sistemas de Información Minero": "Mining Information Systems",
     "Mecánica Estructural": "Structural Mechanics",
     "Mecánica de Sólidos II": "Mechanics of Solids II",
-    "Cálculo I": "Calculus I"
+    "Cálculo I": "Calculus I",
+    "Cálculo II": "Calculus II"
   },
   "orden_cursos": [
     "Estática",
@@ -74,7 +75,8 @@
     "Sistemas de Información Minero",
     "Mecánica Estructural",
     "Mecánica de Sólidos II",
-    "Cálculo I"
+    "Cálculo I",
+    "Cálculo II"
   ],
   "marca_agua": {
     "texto": "LINDEY",
