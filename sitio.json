@@ -50,7 +50,8 @@
     "Mecánica de Sólidos II": "Mechanics of Solids II",
     "Cálculo I": "Calculus I",
     "Cálculo II": "Calculus II",
-    "Analítica de Datos": "Data Analytics"
+    "Analítica de Datos": "Data Analytics",
+    "Mecánica Clásica": "Classical Mechanics"
   },
   "orden_cursos": [
     "Estática",
@@ -79,7 +80,8 @@
     "Mecánica de Sólidos II",
     "Cálculo I",
     "Cálculo II",
-    "Analítica de Datos"
+    "Analítica de Datos",
+    "Mecánica Clásica"
   ],
   "marca_agua": {
     "texto": "LINDEY",
