@@ -18,7 +18,8 @@
     "UNAB": "Universidad Andrés Bello",
     "PUCP": "Pontificia Universidad Católica del Perú",
     "UPC": "Universidad Peruana de Ciencias Aplicadas",
-    "USIL": "Universidad San Ignacio de Loyola"
+    "USIL": "Universidad San Ignacio de Loyola",
+    "ULIMA": "Universidad de Lima"
   },
   "nombre_en": "Lindey Library",
   "descripcion_en": "Free library of university engineering exercises with full problem statement and figure: Statics, Dynamics, Strength of Materials, Mechanics of Materials and more.",
@@ -48,7 +49,8 @@
     "Mecánica Estructural": "Structural Mechanics",
     "Mecánica de Sólidos II": "Mechanics of Solids II",
     "Cálculo I": "Calculus I",
-    "Cálculo II": "Calculus II"
+    "Cálculo II": "Calculus II",
+    "Analítica de Datos": "Data Analytics"
   },
   "orden_cursos": [
     "Estática",
@@ -76,7 +78,8 @@
     "Mecánica Estructural",
     "Mecánica de Sólidos II",
     "Cálculo I",
-    "Cálculo II"
+    "Cálculo II",
+    "Analítica de Datos"
   ],
   "marca_agua": {
     "texto": "LINDEY",
