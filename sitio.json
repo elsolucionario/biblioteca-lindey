@@ -51,7 +51,8 @@
     "Cálculo I": "Calculus I",
     "Cálculo II": "Calculus II",
     "Analítica de Datos": "Data Analytics",
-    "Mecánica Clásica": "Classical Mechanics"
+    "Mecánica Clásica": "Classical Mechanics",
+    "Análisis Estructural": "Structural Analysis"
   },
   "orden_cursos": [
     "Estática",
@@ -81,7 +82,8 @@
     "Cálculo I",
     "Cálculo II",
     "Analítica de Datos",
-    "Mecánica Clásica"
+    "Mecánica Clásica",
+    "Análisis Estructural"
   ],
   "marca_agua": {
     "texto": "LINDEY",
